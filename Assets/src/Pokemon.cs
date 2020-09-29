@@ -85,16 +85,23 @@ public class Pokemon {
         return backSprite;
     }
 
-    public void useCapacity(int i, Pokemon target)
+    public int useCapacity(int i, Pokemon target, PokemonRender render)
     {
         if (i == -1)
             i = getRandomAttack();
 
         if (i != -1)
         {
-            if (canUseAttack(i))
+            if (canUseAttack(i)){
+                if(capacities[i] is SpecialAttack){
+                    ((SpecialAttack) capacities[i]).setRenderTarget(render);
+                }
                 capacities[i].use(this, target);
+                this.charged = 0;
+                return 1;
+            }
         }
+        return 0;
        
     }
     public int getRandomAttack()
@@ -155,7 +162,6 @@ public class Pokemon {
     }
     public void charge(float time){
         this.charged += (float)(time * this.stats.Vitess);
-        Debug.Log(charged);
         if(this.charged >= 100f){
             this.charged -= 100f;
         }

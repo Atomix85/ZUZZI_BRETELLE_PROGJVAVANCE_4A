@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Team {
+public class Team : MonoBehaviour {
 
-    string name;
-    Pokemon[] pokemons;
-    int nbPokemonInTeam;
-    protected bool canPlay;
+    public PokemonRender pokemonRenderer;
+    public string name;
+    Pokemon[] pokemons = new Pokemon[3];
+    int nbPokemonInTeam = 0;
+    protected bool canPlay = false;
 
-    public Team(string name){
-        this.name = name;
-        nbPokemonInTeam = 0;
-        canPlay = false;
-        pokemons = new Pokemon[3];
-    }
     public int addPokemon(Pokemon pokemon)
     {
         if(nbPokemonInTeam < 3)
@@ -40,4 +35,8 @@ public class Team {
         
     }
 
+    public void recoveryTime(){
+        IEnumerator coroutine = PokemonBattleRender.recoveryTime(gameObject);
+        StartCoroutine(coroutine);
+    }
 }
