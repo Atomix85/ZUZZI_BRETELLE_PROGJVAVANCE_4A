@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9187149218322854339}
   - component: {fileID: 5246856416528645734}
   - component: {fileID: 8013138855680789164}
-  - component: {fileID: -3946364834956569355}
+  - component: {fileID: 1321430669365976715}
   m_Layer: 31
   m_Name: BasicGrass
   m_TagString: Untagged
@@ -81,7 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!54 &-3946364834956569355
+--- !u!54 &1321430669365976715
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,5 +95,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
