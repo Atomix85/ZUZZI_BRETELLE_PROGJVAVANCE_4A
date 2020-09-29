@@ -10,6 +10,7 @@ public class init : MonoBehaviour {
     Trainer trainer;
     PlayerTeam player;
     float timer = 0;
+    float tickDeltaTime = 0;
     // Use this for initialization
     void Start () {
 
@@ -30,7 +31,7 @@ public class init : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        terrain.update();
+        terrain.update(tickDeltaTime);
         if(timer > 2)
         {
             timer = 0;
@@ -38,12 +39,16 @@ public class init : MonoBehaviour {
                 && trainer.getFirstAlivePokemon() != null)
             {
                 player.getFirstAlivePokemon().useCapacity(-1, trainer.getFirstAlivePokemon());
+            }
+            if(player.getFirstAlivePokemon() != null
+                && trainer.getFirstAlivePokemon() != null)
+            {
                 trainer.getFirstAlivePokemon().useCapacity(-1, player.getFirstAlivePokemon());
             }
-            
             terrain.callPokemon();
         }
-        timer += Time.deltaTime;
+        tickDeltaTime = Time.deltaTime;
+        timer += tickDeltaTime;
 
     }
 }

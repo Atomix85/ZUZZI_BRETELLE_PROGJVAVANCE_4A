@@ -11,6 +11,8 @@ public class Pokemon {
     protected int level;
     protected int life;
 
+    public float charged;
+
     public Capacity[] capacities;
     public EfficientRule resistance;
 
@@ -20,6 +22,7 @@ public class Pokemon {
     {
         this.level = level;
         this.nature = 1.0f;
+        this.charged = 100f;
         this.setIV();
         this.capacities = new Capacity[4];
         frontSprite = Resources.Load("graphics/pokemon/" + spriteName + "/front", typeof(Sprite)) as Sprite;
@@ -149,5 +152,12 @@ public class Pokemon {
             4*(IV.Defense  % 2 == 0 ? 0 : 1) +
             2*(IV.Vitess % 2 == 0 ? 0 : 1) +
             (IV.SpeAttack % 2 == 0 ? 0 : 1);
+    }
+    public void charge(float time){
+        this.charged += (float)(time * this.stats.Vitess);
+        Debug.Log(charged);
+        if(this.charged >= 100f){
+            this.charged -= 100f;
+        }
     }
 }

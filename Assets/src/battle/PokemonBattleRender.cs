@@ -76,4 +76,28 @@ public class PokemonBattleRender {
             
         }
     }
+    public static void update(GameObject terrain, Pokemon pokemon,bool reversed)
+    {
+        if(reversed) {
+            GameObject coolmode = terrain.transform.Find("coolmode/barlife").gameObject;
+            GameObject subcoolmode = coolmode.transform.Find("barlifedes").gameObject;
+            float level = pokemon.charged;
+
+            float pvratio = level / 100.0f;
+            
+            coolmode.transform.localScale = new Vector3( pvratio, 1.0f, 1.0f);
+
+            if(pvratio >= 0.5f)
+            {
+                subcoolmode.GetComponent<SpriteRenderer>().color = Color.green;
+            }else if (pvratio >= 0.2f && pvratio < 0.5f)
+            {
+                subcoolmode.GetComponent<SpriteRenderer>().color = Color.yellow;
+            }else if (pvratio >= 0.0f && pvratio < 0.2f)
+            {
+                subcoolmode.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+
+        }
+    }
 }

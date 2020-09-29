@@ -16,7 +16,7 @@ public class Terrain {
     {
         Pokemon pokemonAdv = adversaire.getFirstAlivePokemon();
         Pokemon pokemonMe = me.getFirstAlivePokemon();
-
+        
         if(pokemonAdv != null)
         {
             PokemonBattleRender.makeSprite(trainerPart, pokemonAdv, false);
@@ -26,9 +26,23 @@ public class Terrain {
             PokemonBattleRender.makeSprite(playerPart, pokemonMe, true);
         }
     }
-    public void update()
+    public void update(float time)
     {
         adversaire.updateBattle(trainerPart, me);
         me.updateBattle(playerPart, adversaire);
+
+        
+        Pokemon pokemonAdv = adversaire.getFirstAlivePokemon();
+        Pokemon pokemonMe = me.getFirstAlivePokemon();
+
+
+        if(pokemonMe != null)
+        {
+            pokemonMe.charge(time);
+            PokemonBattleRender.update(playerPart, pokemonMe, true);
+        }
+        if(pokemonAdv != null){
+            pokemonAdv.charge(time);
+        }
     }
 }
