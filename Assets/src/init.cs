@@ -17,6 +17,14 @@ public class init : MonoBehaviour {
         meTerrain.addPokemon(new Bulbasaur(20));
         adversaireTerrain.addPokemon(new Squirtle(20));
 
+        if (KeepType.Instance.Type == "Grass")
+        {
+            trainer.addPokemon(new Bulbasaur(20));
+        } else if (KeepType.Instance.Type == "Water")
+        {
+            trainer.addPokemon(new Squirtle(20));
+        }
+        
 
         terrain = new Terrain(adversaireTerrain,meTerrain);
         Terrain.playerPart = meTerrain.gameObject;
