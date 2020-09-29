@@ -33,10 +33,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Bridge
+  - Grass
+  - Ground
   m_SortingLayers:
   - name: Default
     uniqueID: 0
