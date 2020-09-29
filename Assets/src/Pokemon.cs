@@ -85,7 +85,7 @@ public class Pokemon {
         return backSprite;
     }
 
-    public int useCapacity(int i, Pokemon target)
+    public int useCapacity(int i, Pokemon target, PokemonRender render)
     {
         if (i == -1)
             i = getRandomAttack();
@@ -93,6 +93,9 @@ public class Pokemon {
         if (i != -1)
         {
             if (canUseAttack(i)){
+                if(capacities[i] is SpecialAttack){
+                    ((SpecialAttack) capacities[i]).setRenderTarget(render);
+                }
                 capacities[i].use(this, target);
                 this.charged = 0;
                 return 1;

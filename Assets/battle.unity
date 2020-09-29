@@ -5358,6 +5358,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &209359949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4768067002134622425, guid: 401f4486807a86c4da0d1ae6bb4c24fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 4768067002193699988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209359951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209359949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5a7cd175c0ea84d8468ce0e3d4b4da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -1
+  maxX: 1
+  minY: -1
+  maxY: 1
+  v: {x: 0, y: 0}
+  originalPosition: {x: 0, y: 0}
+  sensibility: 0.5
+  target: {fileID: 895245599955435976, guid: 463a3a47f5bfc194091d2af4bb5fcba6, type: 3}
 --- !u!1 &1015099833
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,6 +5761,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4768067002272648098, guid: 401f4486807a86c4da0d1ae6bb4c24fc,
+        type: 3}
+      propertyPath: pokemonRenderer
+      value: 
+      objectReference: {fileID: 209359951}
     - target: {fileID: 4768067002272648103, guid: 401f4486807a86c4da0d1ae6bb4c24fc,
         type: 3}
       propertyPath: m_Name

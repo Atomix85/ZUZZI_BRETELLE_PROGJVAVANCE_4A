@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Team : MonoBehaviour {
 
+    public PokemonRender pokemonRenderer;
     public string name;
     Pokemon[] pokemons = new Pokemon[3];
     int nbPokemonInTeam = 0;

@@ -45,16 +45,16 @@ public class Terrain {
         {
             int i = 0;
             if(Input.GetKeyDown(KeyCode.A)){
-                i = pokemonMe.useCapacity(0, pokemonAdv);
+                i = pokemonMe.useCapacity(0, pokemonAdv, null);
                 this.callPokemon();
             }else if(Input.GetKeyDown(KeyCode.Z)){
-                i = pokemonMe.useCapacity(1, pokemonAdv);
+                i = pokemonMe.useCapacity(1, pokemonAdv, null);
                 this.callPokemon();
             }else if(Input.GetKeyDown(KeyCode.Q)){
-                i = pokemonMe.useCapacity(2, pokemonAdv);
+                i = pokemonMe.useCapacity(2, pokemonAdv, null);
                 this.callPokemon();
             }else if(Input.GetKeyDown(KeyCode.S)){
-                i = pokemonMe.useCapacity(3, pokemonAdv);
+                i = pokemonMe.useCapacity(3, pokemonAdv, null);
                 this.callPokemon();
             }
 
@@ -66,13 +66,13 @@ public class Terrain {
 
         if(timer > born)
         {
-            born = rand.NextDouble() * 2.0d;
+            born = rand.NextDouble() * 2.0d + 1d;
             timer = 0;
             int i = 0;
             if(pokemonMe != null
                && pokemonAdv != null)
             {
-                i = pokemonAdv.useCapacity(-1, pokemonMe);
+                i = pokemonAdv.useCapacity(-1, pokemonMe, me.pokemonRenderer);
             }
             this.callPokemon();
 
