@@ -24,12 +24,12 @@ public class Capacity : ICloneable
     {
         return this.MemberwiseClone();
     }
-    public static int makeDegat(int level, int power, int attack, int defense, float CM)
+    public static int makeDegat(int level, int power, int attack, int defense, float CM, float charge)
     {
         int result = 0;
 
         result = (int)( ( ( (0.4f * level + 2) * power * attack )/
-            (50 * defense) + 2 ) * CM);
+            (50 * defense) + 2 ) * CM * charge);
 
         return result;
     }
@@ -63,6 +63,10 @@ public class Capacity : ICloneable
             return new Color(0.47f, 0.78f, 0.31f);
         }
         return new Color(1.0F, 1.0f, 1.0f);
+    }
+
+    public float calculateChargeLevel(Pokemon emit){
+        return emit.charged / 100.0f;
     }
 
     public float calculateCM(Pokemon target)

@@ -76,6 +76,21 @@ public class PokemonBattleRender {
             
         }
     }
+
+    public static IEnumerator recoveryTime(GameObject terrain){
+        GameObject pokemonObject;
+        SpriteRenderer sr;
+        pokemonObject = terrain.transform.
+            Find("Combat-pokemon").gameObject;
+        if(pokemonObject != null){
+            sr = pokemonObject.GetComponent<SpriteRenderer>();
+            sr.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sr.color = Color.white;
+        }
+
+    }
+
     public static void update(GameObject terrain, Pokemon pokemon,bool reversed)
     {
         if(reversed) {

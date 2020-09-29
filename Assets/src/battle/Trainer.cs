@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Trainer : Team {
 
-    public Trainer(string name) : base(name)
-    {
-        
-    }
     public override void updateBattle(GameObject obj, Team team)
     {
         base.updateBattle(obj,team);

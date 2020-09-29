@@ -13,7 +13,8 @@ public class SolarBeam : Capacity, IGrassType {
 
         int speAttack = emit.getStats().SpeAttack;
         int speDefense = target.getStats().SpeDefense;
-        int degat = makeDegat(emit.getLevel(), this.power, speAttack, speDefense, calculateCM(target));
+        int degat = makeDegat(emit.getLevel(), this.power, speAttack, speDefense, 
+            calculateCM(target), calculateChargeLevel(emit));
         target.setPv(target.getPv() - degat);
     }
 }

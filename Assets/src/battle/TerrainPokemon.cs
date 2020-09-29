@@ -5,6 +5,8 @@ using UnityEngine;
 public class Terrain {
 
     static public GameObject playerPart, trainerPart;
+    static public float timer = 0;
+    static public double born = 0;
     private Team adversaire, me;
 
     public Terrain(Trainer adversaire, PlayerTeam me)
@@ -26,23 +28,67 @@ public class Terrain {
             PokemonBattleRender.makeSprite(playerPart, pokemonMe, true);
         }
     }
-    public void update(float time)
+    public void update(float t)
     {
         adversaire.updateBattle(trainerPart, me);
         me.updateBattle(playerPart, adversaire);
 
+        System.Random rand = new System.Random();
         
         Pokemon pokemonAdv = adversaire.getFirstAlivePokemon();
         Pokemon pokemonMe = me.getFirstAlivePokemon();
 
+        timer += t;
+
+        if(pokemonMe != null
+               && pokemonAdv != null)
+        {
+            int i = 0;
+            if(Input.GetKeyDown(KeyCode.A)){
+                i = pokemonMe.useCapacity(0, pokemonAdv);
+                this.callPokemon();
+            }else if(Input.GetKeyDown(KeyCode.Z)){
+                i = pokemonMe.useCapacity(1, pokemonAdv);
+                this.callPokemon();
+            }else if(Input.GetKeyDown(KeyCode.Q)){
+                i = pokemonMe.useCapacity(2, pokemonAdv);
+                this.callPokemon();
+            }else if(Input.GetKeyDown(KeyCode.S)){
+                i = pokemonMe.useCapacity(3, pokemonAdv);
+                this.callPokemon();
+            }
+
+            if(i != 0){
+                adversaire.recoveryTime();
+            }
+
+        }
+
+        if(timer > born)
+        {
+            born = rand.NextDouble() * 2.0d;
+            timer = 0;
+            int i = 0;
+            if(pokemonMe != null
+               && pokemonAdv != null)
+            {
+                i = pokemonAdv.useCapacity(-1, pokemonMe);
+            }
+            this.callPokemon();
+
+            if(i != 0){
+                me.recoveryTime();
+            }
+        }
+
 
         if(pokemonMe != null)
         {
-            pokemonMe.charge(time);
+            pokemonMe.charge(t);
             PokemonBattleRender.update(playerPart, pokemonMe, true);
         }
         if(pokemonAdv != null){
-            pokemonAdv.charge(time);
+            pokemonAdv.charge(t);
         }
     }
 }
