@@ -10,6 +10,10 @@ public class Charmander : Pokemon, IFireType {
         setBaseStats();
         setStats();
         resistance = EfficientRule.basicTableFire;
+        capacities[0] = CapacitiesRef.tackle.Clone() as Capacity;
+        capacities[1] = CapacitiesRef.ember.Clone() as Capacity;
+        capacities[2] = CapacitiesRef.flamethrower.Clone() as Capacity;
+        resistance = EfficientRule.basicTableFire;
     }
    
     void setBaseStats()

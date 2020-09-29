@@ -20,6 +20,7 @@ public class Pokemon {
     {
         this.level = level;
         this.nature = 1.0f;
+        this.setIV();
         this.capacities = new Capacity[4];
         frontSprite = Resources.Load("graphics/pokemon/" + spriteName + "/front", typeof(Sprite)) as Sprite;
         backSprite = Resources.Load("graphics/pokemon/" + spriteName + "/back", typeof(Sprite)) as Sprite;
@@ -80,5 +81,73 @@ public class Pokemon {
     {
         return backSprite;
     }
-    
+
+    public void useCapacity(int i, Pokemon target)
+    {
+        if (i == -1)
+            i = getRandomAttack();
+
+        if (i != -1)
+        {
+            if (canUseAttack(i))
+                capacities[i].use(this, target);
+        }
+       
+    }
+    public int getRandomAttack()
+    {
+        int i = -1;
+        if (canAttack())
+        {
+            while (i == -1)
+            {
+                i = Random.Range(0, 3);
+                if (canUseAttack(i))
+                {
+                    return i;
+                }
+                i = -1;
+            }
+        }
+        return i;
+    }
+    public bool canUseAttack(int i)
+    {
+        try
+        {
+            if (capacities[i] != null && capacities[i].getPP() > 0)
+            {
+                return true;
+            }
+            return false;
+        }catch(System.IndexOutOfRangeException ex)
+        {
+            Debug.Log(capacities[i]);
+        }
+        return false;
+    }
+    public bool canAttack()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(canUseAttack(i))
+            {
+                return true;
+            }
+        }
+        return false;
+    }    
+    protected void setIV()
+    {
+        IV = new Stats();
+        IV.Attack = Random.Range(0, 15);
+        IV.SpeAttack = Random.Range(0, 15);
+        IV.Defense = Random.Range(0, 15);
+        IV.SpeDefense = IV.SpeAttack;
+        IV.Vitess = Random.Range(0, 15);
+        IV.Pv = 8 * (IV.Attack % 2 == 0 ? 0 : 1) + 
+            4*(IV.Defense  % 2 == 0 ? 0 : 1) +
+            2*(IV.Vitess % 2 == 0 ? 0 : 1) +
+            (IV.SpeAttack % 2 == 0 ? 0 : 1);
+    }
 }

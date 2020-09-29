@@ -10,6 +10,9 @@ public class Squirtle : Pokemon, IWaterType
         this.name = "Carapuce";
         setBaseStats();
         setStats();
+        capacities[0] = CapacitiesRef.tackle.Clone() as Capacity;
+        capacities[1] = CapacitiesRef.watergun.Clone() as Capacity;
+        capacities[2] = CapacitiesRef.hydropump.Clone() as Capacity;
         resistance = EfficientRule.basicTableWater;
     }
 

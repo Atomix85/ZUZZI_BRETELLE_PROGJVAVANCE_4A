@@ -5,13 +5,13 @@ using UnityEngine;
 public class EfficientRule {
 
     static public EfficientRule basicTableFire
-        = new EfficientRule(0.5f, 0.5f, 1f, 2f);
+        = new EfficientRule(0.5f, 2f, 1f, 0.5f);
     static public EfficientRule basicTableWater
-        = new EfficientRule(2f, 0.5f, 1f, 0.5f);
+        = new EfficientRule(0.5f, 0.5f, 1f, 2f);
     static public EfficientRule basicTablePoison
-        = new EfficientRule(1f, 1f, 0.5f, 2f);
+        = new EfficientRule(1f, 1f, 0.5f, 0.5f);
     static public EfficientRule basicTableGrass
-        = new EfficientRule(0.5f, 2f, 0.5f, 0.5f);
+        = new EfficientRule(2f, 0.5f, 2f, 0.5f);
 
 
     private float fire;
