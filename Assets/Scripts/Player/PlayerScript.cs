@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -8,7 +11,14 @@ public class PlayerScript : MonoBehaviour
     private CharacterController Controller;
     [SerializeField]
     private float speed = 12f;
-    
+
+    [SerializeField] private Scene testscene;
+
+    private void Start()
+    {
+        transform.position = SavePosition.Instance.pos;
+    }
+
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
@@ -38,18 +48,35 @@ public class PlayerScript : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0,180,0);
         }*/
 
-        
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Grass"))
         {
-            Debug.Log("Grass Col");
+            
+            var truc = Random.Range(0, 10);
+            Debug.Log(truc);
+            if ( truc == 10)
+            {
+                Savepos();
+                
+                SceneManager.LoadScene("BisScene");
+                Debug.Log("Combat herbe");
+            }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bridge"))
         {
-            Debug.Log("Col Bridge");
+            if (Random.Range(0, 10) == 10)
+            {
+                Savepos();
+                Debug.Log("Combat eau");
+            }
         }
+    }
+
+    public void Savepos()
+    {
+        SavePosition.Instance.pos = transform.position;
     }
 }

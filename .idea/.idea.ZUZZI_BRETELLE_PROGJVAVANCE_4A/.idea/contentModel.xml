@@ -10,6 +10,7 @@
           <e p="Player" t="Include">
             <e p="CameraScript.cs" t="Include" />
             <e p="PlayerScript.cs" t="Include" />
+            <e p="SavePosition.cs" t="Include" />
           </e>
         </e>
         <e p="TODO.txt" t="Include" />
