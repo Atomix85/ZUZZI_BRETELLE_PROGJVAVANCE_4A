@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CameraScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/src/KeepType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/SavePosition.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -19,6 +20,8 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CameraScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/SavePosition.cs" />
+        <option value="$PROJECT_DIR$/Assets/src/KeepType.cs" />
+        <option value="$PROJECT_DIR$/Assets/src/init.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerScript.cs" />
       </list>
     </option>
@@ -62,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601363535916</updated>
-      <workItem from="1601363612965" duration="10121000" />
+      <workItem from="1601363612965" duration="11304000" />
     </task>
     <servers />
   </component>

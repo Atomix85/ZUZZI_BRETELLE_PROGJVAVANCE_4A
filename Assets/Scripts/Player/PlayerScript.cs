@@ -55,22 +55,26 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Grass"))
         {
             
-            var truc = Random.Range(0, 10);
+            var truc = Random.Range(0, 11);
             Debug.Log(truc);
             if ( truc == 10)
             {
                 Savepos();
-                
-                SceneManager.LoadScene("BisScene");
+
+                TypeEnemy("Grass");
                 Debug.Log("Combat herbe");
             }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bridge"))
         {
-            if (Random.Range(0, 10) == 10)
+            var truc = Random.Range(0, 11);
+            Debug.Log(truc);
+            if (truc == 10)
             {
                 Savepos();
-                Debug.Log("Combat eau");
+
+                TypeEnemy("Water");
+                Debug.Log("Combat herbe");
             }
         }
     }
@@ -78,5 +82,11 @@ public class PlayerScript : MonoBehaviour
     public void Savepos()
     {
         SavePosition.Instance.pos = transform.position;
+    }
+
+    public void TypeEnemy(string Type)
+    {
+        KeepType.Instance.Type = Type;
+        SceneManager.LoadScene("battle");
     }
 }

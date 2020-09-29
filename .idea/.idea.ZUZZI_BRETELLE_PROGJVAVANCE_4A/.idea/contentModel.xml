@@ -13,6 +13,50 @@
             <e p="SavePosition.cs" t="Include" />
           </e>
         </e>
+        <e p="src" t="Include">
+          <e p="battle" t="Include">
+            <e p="PlayerTeam.cs" t="Include" />
+            <e p="PokemonBattleRender.cs" t="Include" />
+            <e p="Team.cs" t="Include" />
+            <e p="TerrainPokemon.cs" t="Include" />
+            <e p="Trainer.cs" t="Include" />
+          </e>
+          <e p="caps" t="Include">
+            <e p="CapacitiesRef.cs" t="Include" />
+            <e p="Capacity.cs" t="Include" />
+            <e p="physics" t="Include">
+              <e p="Tackle.cs" t="Include" />
+            </e>
+            <e p="specials" t="Include">
+              <e p="Ember.cs" t="Include" />
+              <e p="Flamethrower.cs" t="Include" />
+              <e p="HydroPump.cs" t="Include" />
+              <e p="SolarBeam.cs" t="Include" />
+              <e p="VineWhip.cs" t="Include" />
+              <e p="WaterGun.cs" t="Include" />
+            </e>
+          </e>
+          <e p="init.cs" t="Include" />
+          <e p="KeepType.cs" t="Include" />
+          <e p="Pokemon.cs" t="Include" />
+          <e p="species" t="Include">
+            <e p="Bulbasaur.cs" t="Include" />
+            <e p="Charmander.cs" t="Include" />
+            <e p="Squirtle.cs" t="Include" />
+          </e>
+          <e p="types" t="Include">
+            <e p="IFireType.cs" t="Include" />
+            <e p="IGrassType.cs" t="Include" />
+            <e p="INormalType.cs" t="Include" />
+            <e p="IPoisonType.cs" t="Include" />
+            <e p="IWaterType.cs" t="Include" />
+            <e p="Type.cs" t="Include" />
+          </e>
+          <e p="utils" t="Include">
+            <e p="EfficientRule.cs" t="Include" />
+            <e p="Stats.cs" t="Include" />
+          </e>
+        </e>
         <e p="TODO.txt" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
