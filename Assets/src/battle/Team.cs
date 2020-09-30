@@ -43,4 +43,9 @@ public class Team : MonoBehaviour {
         IEnumerator coroutine = PokemonBattleRender.recoveryTime(gameObject);
         StartCoroutine(coroutine);
     }
+
+    public void Update(){
+        if(agent != null)
+            agent.addTime(Time.deltaTime);
+        }
 }

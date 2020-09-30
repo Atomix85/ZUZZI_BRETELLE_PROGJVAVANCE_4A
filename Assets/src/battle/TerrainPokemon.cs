@@ -38,9 +38,8 @@ public class Terrain {
         Pokemon pokemonMe = me.getFirstAlivePokemon();
 
         int i = me.agent.interact(pokemonMe, pokemonAdv);
-        if(i != 0) callPokemon();
 
-        i = adversaire.agent.interact(pokemonAdv, pokemonMe);
+        i += adversaire.agent.interact(pokemonAdv, pokemonMe);
         if(i != 0) callPokemon();
 
 

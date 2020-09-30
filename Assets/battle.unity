@@ -5384,6 +5384,7 @@ MonoBehaviour:
   originalPosition: {x: 0, y: 0}
   sensibility: 0.5
   target: {fileID: 895245599955435976, guid: 463a3a47f5bfc194091d2af4bb5fcba6, type: 3}
+  adversaire: {fileID: 557667822474072961}
 --- !u!1 &569765650
 GameObject:
   m_ObjectHideFlags: 0
@@ -6057,6 +6058,7 @@ MonoBehaviour:
   originalPosition: {x: 0, y: 0}
   sensibility: 0.5
   target: {fileID: 895245599955435976, guid: 463a3a47f5bfc194091d2af4bb5fcba6, type: 3}
+  adversaire: {fileID: 209359949}
 --- !u!1001 &4768067002193699988
 PrefabInstance:
   m_ObjectHideFlags: 0

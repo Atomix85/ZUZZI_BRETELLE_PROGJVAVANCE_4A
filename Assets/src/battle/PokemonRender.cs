@@ -27,15 +27,15 @@ public class PokemonRender : MonoBehaviour
     public IEnumerator warn(Pokemon p, int degat){
         System.Random rand = new System.Random();
         Vector2 dangerzone = new Vector2(
-            (float) rand.NextDouble() * (2) - 1 + transform.position.x,
-            (float) rand.NextDouble() * (2) - 1 + transform.position.y
+            (float) rand.NextDouble() * (2) - 1 + adversaire.transform.position.x,
+            (float) rand.NextDouble() * (2) - 1 + adversaire.transform.position.y
         );
 
         GameObject targetInstance = Instantiate(target,dangerzone, Quaternion.identity);
         
         yield return new WaitForSeconds(1.0f);
-        Debug.Log(Vector2.Distance(gameObject.transform.position, targetInstance.transform.position));
-        if(Vector2.Distance(gameObject.transform.position, targetInstance.transform.position) < 1f){
+        Debug.Log(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position));
+        if(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position) < 2f){
             p.setPv(p.getPv() - degat);
             yield return PokemonBattleRender.recoveryTime(adversaire.transform.parent.gameObject);
         }
