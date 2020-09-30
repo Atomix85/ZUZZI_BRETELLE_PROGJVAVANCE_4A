@@ -25,19 +25,19 @@ public class Playable : Agent
 
             if(Input.GetKey(KeyCode.UpArrow)){
                 render.v.y += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(-0.005f);
+                pokemonMe.charge(COST_MOVE);
             }
             if(Input.GetKey(KeyCode.DownArrow)){
                 render.v.y -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(-0.005f);
+                pokemonMe.charge(COST_MOVE);
             }
             if(Input.GetKey(KeyCode.LeftArrow)){
                 render.v.x -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(-0.005f);
+                pokemonMe.charge(COST_MOVE);
             }
             if(Input.GetKey(KeyCode.RightArrow)){
                 render.v.x += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(-0.005f);
+                pokemonMe.charge(COST_MOVE);
             }
 
             return i;
