@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerTeam : Team {
 
+    public void Start(){
+        agent = new Playable(pokemonRenderer);
+    }
+
     public override void updateBattle(GameObject obj, Team team)
     {
         base.updateBattle(obj,team);

@@ -10,6 +10,7 @@ public class Team : MonoBehaviour {
     int nbPokemonInTeam = 0;
     protected bool canPlay = false;
 
+    public Agent agent;
     public GameObject printIfNull;
 
     public int addPokemon(Pokemon pokemon)
