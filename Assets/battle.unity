@@ -5376,10 +5376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5a7cd175c0ea84d8468ce0e3d4b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -1
-  maxX: 1
-  minY: -1
-  maxY: 1
+  minX: -0.3
+  maxX: 0.3
+  minY: -0.1
+  maxY: 0.3
   v: {x: 0, y: 0}
   originalPosition: {x: 0, y: 0}
   sensibility: 0.5
@@ -6050,10 +6050,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5a7cd175c0ea84d8468ce0e3d4b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -1
-  maxX: 1
-  minY: -1
-  maxY: 1
+  minX: -0.3
+  maxX: 0.3
+  minY: -0.2
+  maxY: 0.2
   v: {x: 0, y: 0}
   originalPosition: {x: 0, y: 0}
   sensibility: 0.5
