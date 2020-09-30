@@ -7,8 +7,14 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="Menu" t="Include">
+            <e p="MainMenuScript.cs" t="Include" />
+            <e p="OptionMenuScript.cs" t="Include" />
+            <e p="PauseMenuScript.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="CameraScript.cs" t="Include" />
+            <e p="EnablePauseMenu.cs" t="Include" />
             <e p="PlayerScript.cs" t="Include" />
             <e p="SavePosition.cs" t="Include" />
           </e>
@@ -17,6 +23,7 @@
           <e p="battle" t="Include">
             <e p="PlayerTeam.cs" t="Include" />
             <e p="PokemonBattleRender.cs" t="Include" />
+            <e p="PokemonRender.cs" t="Include" />
             <e p="Team.cs" t="Include" />
             <e p="TerrainPokemon.cs" t="Include" />
             <e p="Trainer.cs" t="Include" />
@@ -32,6 +39,7 @@
               <e p="Flamethrower.cs" t="Include" />
               <e p="HydroPump.cs" t="Include" />
               <e p="SolarBeam.cs" t="Include" />
+              <e p="SpecialAttack.cs" t="Include" />
               <e p="VineWhip.cs" t="Include" />
               <e p="WaterGun.cs" t="Include" />
             </e>
