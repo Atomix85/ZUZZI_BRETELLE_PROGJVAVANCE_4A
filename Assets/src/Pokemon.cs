@@ -165,5 +165,8 @@ public class Pokemon {
         if(this.charged >= 100f){
             this.charged -= 100f;
         }
+        if(this.charged < 0){
+            this.charged = 0;
+        }
     }
 }

@@ -10,6 +10,9 @@ public class Team : MonoBehaviour {
     int nbPokemonInTeam = 0;
     protected bool canPlay = false;
 
+    public Agent agent;
+    public GameObject printIfNull;
+
     public int addPokemon(Pokemon pokemon)
     {
         if(nbPokemonInTeam < 3)
@@ -28,6 +31,7 @@ public class Team : MonoBehaviour {
                 return pokemon;
             }
         }
+        printIfNull.SetActive(true);
         return null; // Aucun pokemon vivant = gameover
     }
     public virtual void updateBattle(GameObject obj, Team team)
@@ -39,4 +43,9 @@ public class Team : MonoBehaviour {
         IEnumerator coroutine = PokemonBattleRender.recoveryTime(gameObject);
         StartCoroutine(coroutine);
     }
+
+    public void Update(){
+        if(agent != null)
+            agent.addTime(Time.deltaTime);
+        }
 }

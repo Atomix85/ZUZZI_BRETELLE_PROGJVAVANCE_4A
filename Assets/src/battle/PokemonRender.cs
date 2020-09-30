@@ -16,6 +16,8 @@ public class PokemonRender : MonoBehaviour
 
     public GameObject target;
 
+    public GameObject adversaire;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +27,17 @@ public class PokemonRender : MonoBehaviour
     public IEnumerator warn(Pokemon p, int degat){
         System.Random rand = new System.Random();
         Vector2 dangerzone = new Vector2(
-            (float) rand.NextDouble() * (2) - 1 + transform.position.x,
-            (float) rand.NextDouble() * (2) - 1 + transform.position.y
+            (float) rand.NextDouble() * (2) - 1 + adversaire.transform.position.x,
+            (float) rand.NextDouble() * (2) - 1 + adversaire.transform.position.y
         );
 
         GameObject targetInstance = Instantiate(target,dangerzone, Quaternion.identity);
         
         yield return new WaitForSeconds(1.0f);
-        Debug.Log(Vector2.Distance(gameObject.transform.position, targetInstance.transform.position));
-        if(Vector2.Distance(gameObject.transform.position, targetInstance.transform.position) < 1f){
+        Debug.Log(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position));
+        if(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position) < 2f){
             p.setPv(p.getPv() - degat);
-            yield return PokemonBattleRender.recoveryTime(transform.parent.gameObject);
+            yield return PokemonBattleRender.recoveryTime(adversaire.transform.parent.gameObject);
         }
         Destroy(targetInstance);
     }
@@ -43,18 +45,6 @@ public class PokemonRender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.UpArrow)){
-            v.y += Time.deltaTime * sensibility;
-        }
-        if(Input.GetKey(KeyCode.DownArrow)){
-            v.y -= Time.deltaTime * sensibility;
-        }
-        if(Input.GetKey(KeyCode.LeftArrow)){
-            v.x -= Time.deltaTime * sensibility;
-        }
-        if(Input.GetKey(KeyCode.RightArrow)){
-            v.x += Time.deltaTime * sensibility;
-        }
 
         if(v.x > maxX){
             v.x = maxX;
