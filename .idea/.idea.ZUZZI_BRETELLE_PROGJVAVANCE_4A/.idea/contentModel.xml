@@ -21,6 +21,11 @@
         </e>
         <e p="src" t="Include">
           <e p="battle" t="Include">
+            <e p="agent" t="Include">
+              <e p="Agent.cs" t="Include" />
+              <e p="Playable.cs" t="Include" />
+              <e p="Randomer.cs" t="Include" />
+            </e>
             <e p="PlayerTeam.cs" t="Include" />
             <e p="PokemonBattleRender.cs" t="Include" />
             <e p="PokemonRender.cs" t="Include" />

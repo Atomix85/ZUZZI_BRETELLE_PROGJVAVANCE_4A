@@ -27,16 +27,8 @@ public class MainMenuScript : MonoBehaviour
     public void FigthButton()
     {
         KeepType.Instance.isMenu = 1;
-
-        if (KeepType.Instance.Type == "null" || KeepType.Instance.Pokeplayer == "null")
-        {
-            Debug.Log("Choisi un Pokemon enemie et un allie");
-        }
-        else
-        {
-
-            SceneManager.LoadScene("battle");
-        }
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("battle");
     }
     
     

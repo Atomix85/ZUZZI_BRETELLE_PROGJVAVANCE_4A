@@ -23,12 +23,12 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CameraScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/SavePosition.cs" />
-        <option value="$PROJECT_DIR$/Assets/src/init.cs" />
         <option value="$PROJECT_DIR$/Assets/src/KeepType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/OptionMenuScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/PauseMenuScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/EnablePauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/src/init.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenuScript.cs" />
       </list>
     </option>
@@ -73,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601363535916</updated>
       <workItem from="1601363612965" duration="13120000" />
-      <workItem from="1601457860711" duration="5834000" />
+      <workItem from="1601457860711" duration="6579000" />
     </task>
     <servers />
   </component>
