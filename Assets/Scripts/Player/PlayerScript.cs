@@ -12,11 +12,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float speed = 12f;
 
-    [SerializeField] private Scene testscene;
+    //[SerializeField] private Scene testscene;
 
     private void Start()
     {
-        transform.position = SavePosition.Instance.pos;
+        var transformPositionx = transform.position;
+        transformPositionx.x = SavePosition.Instance.pos.x;
+        
+        var transformPositiony = transform.position;
+        transformPositiony.y = SavePosition.Instance.pos.y;
+        
+        var transformPositionz = transform.position;
+        transformPositionz.z = SavePosition.Instance.pos.z;
     }
 
     void Update()
@@ -39,7 +46,6 @@ public class PlayerScript : MonoBehaviour
         {
             
             var truc = Random.Range(0, 11);
-            Debug.Log(truc);
             if ( truc == 10)
             {
                 Savepos();
@@ -49,11 +55,11 @@ public class PlayerScript : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bridge"))
         {
             var truc = Random.Range(0, 11);
-            Debug.Log(truc);
             if (truc == 10)
             {
                 Savepos();
-                Debug.Log("Combat herbe");
+                TypeEnemy("Water");
+                
             }
         }
     }
