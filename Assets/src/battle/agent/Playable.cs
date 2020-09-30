@@ -22,6 +22,24 @@ public class Playable : Agent
             }else if(Input.GetKeyDown(KeyCode.S)){
                 i = pokemonMe.useCapacity(3, pokemonAdv, render);
             }
+
+            if(Input.GetKey(KeyCode.UpArrow)){
+                render.v.y += Time.deltaTime * SENSIBILITY;
+                pokemonMe.charge(-0.005f);
+            }
+            if(Input.GetKey(KeyCode.DownArrow)){
+                render.v.y -= Time.deltaTime * SENSIBILITY;
+                pokemonMe.charge(-0.005f);
+            }
+            if(Input.GetKey(KeyCode.LeftArrow)){
+                render.v.x -= Time.deltaTime * SENSIBILITY;
+                pokemonMe.charge(-0.005f);
+            }
+            if(Input.GetKey(KeyCode.RightArrow)){
+                render.v.x += Time.deltaTime * SENSIBILITY;
+                pokemonMe.charge(-0.005f);
+            }
+
             return i;
         }
         return 0;

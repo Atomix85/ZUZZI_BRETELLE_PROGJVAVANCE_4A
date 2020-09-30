@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Agent
 {
+    protected const float SENSIBILITY = 0.5f;
 
     protected PokemonRender render;
 
