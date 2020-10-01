@@ -12,8 +12,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float speed = 12f;
 
-    //[SerializeField] private Scene testscene;
-
     private void Start()
     {
         var transformPositionx = transform.position;
@@ -48,8 +46,18 @@ public class PlayerScript : MonoBehaviour
             var truc = Random.Range(0, 11);
             if ( truc == 10)
             {
-                Savepos();
-                TypeEnemy("Grass");
+                truc = Random.Range(0, 4);
+                if (truc > 2)
+                {
+                    Savepos();
+                    TypeEnemy("Grass");
+                }
+                else
+                {
+                    Savepos();
+                    TypeEnemy("Fire");
+                }
+                
             }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bridge"))
