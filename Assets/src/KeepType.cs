@@ -10,6 +10,7 @@ public class KeepType : MonoBehaviour
     public string Type;
     public int isMenu;
     public string Pokeplayer;
+    public string Difficulty;
     void Awake ()   
     {
         if (Instance == null)
