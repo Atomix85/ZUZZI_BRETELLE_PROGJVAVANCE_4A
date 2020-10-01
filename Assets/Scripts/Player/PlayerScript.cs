@@ -12,11 +12,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float speed = 12f;
 
-    [SerializeField] private Scene testscene;
-
-    private void Start()
+    void Start()
     {
         transform.position = SavePosition.Instance.pos;
+        Debug.Log(SavePosition.Instance.pos);
     }
 
     void Update()
@@ -29,24 +28,7 @@ public class PlayerScript : MonoBehaviour
 
         Controller.Move(move*speed*Time.deltaTime);
         
-        /*if (x <= 0.99f)
-        {
-            transform.localRotation = Quaternion.Euler(0,90,0);
-            
-            
-        }else if (x >= -0.99f && x<= 0.1f)
-        {
-            transform.localRotation = Quaternion.Euler(0,-90,0);
-        }
-
-        if (z <= 0.99f)
-        {
-            transform.localRotation = Quaternion.Euler(0,0,0);
-            
-        }else if (z >= -0.99f && z <= 0.1f)
-        {
-            transform.localRotation = Quaternion.Euler(0,180,0);
-        }*/
+        
 
     }
     
@@ -56,25 +38,30 @@ public class PlayerScript : MonoBehaviour
         {
             
             var truc = Random.Range(0, 11);
-            Debug.Log(truc);
             if ( truc == 10)
             {
-                Savepos();
-
-                TypeEnemy("Grass");
-                Debug.Log("Combat herbe");
+                truc = Random.Range(0, 4);
+                if (truc > 2)
+                {
+                    Savepos();
+                    TypeEnemy("Grass");
+                }
+                else
+                {
+                    Savepos();
+                    TypeEnemy("Fire");
+                }
+                
             }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bridge"))
         {
             var truc = Random.Range(0, 11);
-            Debug.Log(truc);
             if (truc == 10)
             {
                 Savepos();
-
                 TypeEnemy("Water");
-                Debug.Log("Combat herbe");
+                
             }
         }
     }
@@ -87,6 +74,7 @@ public class PlayerScript : MonoBehaviour
     public void TypeEnemy(string Type)
     {
         KeepType.Instance.Type = Type;
+        KeepType.Instance.isMenu = 0;
         SceneManager.LoadScene("battle");
     }
 }
