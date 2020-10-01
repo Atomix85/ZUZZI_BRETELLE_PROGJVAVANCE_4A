@@ -23,15 +23,22 @@
           <e p="battle" t="Include">
             <e p="agent" t="Include">
               <e p="Agent.cs" t="Include" />
+              <e p="mcts" t="Include">
+                <e p="Action.cs" t="Include" />
+                <e p="TreeAction.cs" t="Include" />
+              </e>
+              <e p="MCTS.cs" t="Include" />
               <e p="Playable.cs" t="Include" />
               <e p="Randomer.cs" t="Include" />
             </e>
+            <e p="LoseScript.cs" t="Include" />
             <e p="PlayerTeam.cs" t="Include" />
             <e p="PokemonBattleRender.cs" t="Include" />
             <e p="PokemonRender.cs" t="Include" />
             <e p="Team.cs" t="Include" />
             <e p="TerrainPokemon.cs" t="Include" />
             <e p="Trainer.cs" t="Include" />
+            <e p="WinScript.cs" t="Include" />
           </e>
           <e p="caps" t="Include">
             <e p="CapacitiesRef.cs" t="Include" />
@@ -70,7 +77,6 @@
             <e p="Stats.cs" t="Include" />
           </e>
         </e>
-        <e p="TODO.txt" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />

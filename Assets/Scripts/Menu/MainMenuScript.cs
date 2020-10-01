@@ -7,12 +7,20 @@ public class MainMenuScript : MonoBehaviour
 {
     [SerializeField]
     private Transform playerpos;
+
+    [SerializeField] private GameObject playercam;
+    [SerializeField] private GameObject menucam;
+    [SerializeField] private GameObject player;
     void Start()
     {
         Time.timeScale = 0f;
         if (KeepType.Instance.isMenu == 0)
         {
+            player.SetActive(true);
+            menucam.SetActive(false);
+            playercam.SetActive(true);
             gameObject.SetActive(false);
+            Time.timeScale = 1.0f;
         }
     }
 

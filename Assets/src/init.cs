@@ -39,10 +39,10 @@ public class init : MonoBehaviour {
         }
         
 
-        terrain = new Terrain(adversaireTerrain,meTerrain);
+        
         Terrain.playerPart = meTerrain.gameObject;
         Terrain.trainerPart = adversaireTerrain.gameObject;
-
+        terrain = new Terrain(adversaireTerrain,meTerrain);
     }
 	
 	// Update is called once per frame
