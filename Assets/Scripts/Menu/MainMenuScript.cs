@@ -26,14 +26,14 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayParty()
     {
-        var transformPositionx = playerpos.transform.position;
+        /*var transformPositionx = playerpos.transform.position;
         transformPositionx.x = SavePosition.Instance.pos.x;
         
         var transformPositiony = playerpos.transform.position;
         transformPositiony.y = SavePosition.Instance.pos.y;
         
         var transformPositionz = playerpos.transform.position;
-        transformPositionz.z = SavePosition.Instance.pos.z;
+        transformPositionz.z = SavePosition.Instance.pos.z;*/
         Time.timeScale = 1.0f;
     } 
     

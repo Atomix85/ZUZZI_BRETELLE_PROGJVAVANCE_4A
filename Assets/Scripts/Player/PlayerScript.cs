@@ -14,14 +14,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-        var transformPositionx = transform.position;
-        transformPositionx.x = SavePosition.Instance.pos.x;
-        
-        var transformPositiony = transform.position;
-        transformPositiony.y = SavePosition.Instance.pos.y;
-        
-        var transformPositionz = transform.position;
-        transformPositionz.z = SavePosition.Instance.pos.z;
+        transform.position = SavePosition.Instance.pos;
     }
 
     void Update()
