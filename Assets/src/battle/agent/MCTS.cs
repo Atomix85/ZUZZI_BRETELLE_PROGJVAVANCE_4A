@@ -17,7 +17,7 @@ public class MCTS : Agent
 
     public bool thrust(){
         foreach(Node n in tree.getPossibleAction()){
-            if(n.data.b > 20){
+            if(n.data.b > 40){
                 return true;
             }
         }
@@ -29,10 +29,12 @@ public class MCTS : Agent
 
         if(pokemonAdv != null && pokemonMe != null){
             
+            
             GameSimul.lifeAdv = pokemonAdv.getStats().Pv;
             GameSimul.lifeMe = pokemonMe.getStats().Pv;
             GameSimul.chargeAdv = pokemonAdv.charged;
             GameSimul.chargeMe = pokemonMe.charged;
+
             compute(tree,pokemonMe, pokemonAdv);
         }
 
