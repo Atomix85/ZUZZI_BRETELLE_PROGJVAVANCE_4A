@@ -12,6 +12,7 @@ public class Terrain {
     {
         this.adversaire = adversaire;
         this.me = me;
+        callPokemon();
     }
     public void callPokemon()
     {
