@@ -12,9 +12,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float speed = 12f;
 
-    private void Start()
+    void Start()
     {
         transform.position = SavePosition.Instance.pos;
+        Debug.Log(SavePosition.Instance.pos);
     }
 
     void Update()
