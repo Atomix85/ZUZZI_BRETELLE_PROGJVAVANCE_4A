@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trainer : Team {
 
     public void Start(){
-        agent = new Randomer(pokemonRenderer);
+        agent = new MCTS(pokemonRenderer);
     }
 
     public override void updateBattle(GameObject obj, Team team)

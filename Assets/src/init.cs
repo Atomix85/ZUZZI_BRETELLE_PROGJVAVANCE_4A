@@ -21,13 +21,13 @@ public class init : MonoBehaviour {
             adversaireTerrain.addPokemon(new Bulbasaur(20));
         } else if (KeepType.Instance.Type == "Water")
         {*/
-            adversaireTerrain.addPokemon(new Squirtle(20));
+            adversaireTerrain.addPokemon(new Bulbasaur(20));
         //}
         
 
-        terrain = new Terrain(adversaireTerrain,meTerrain);
         Terrain.playerPart = meTerrain.gameObject;
         Terrain.trainerPart = adversaireTerrain.gameObject;
+        terrain = new Terrain(adversaireTerrain,meTerrain);
 
     }
 	

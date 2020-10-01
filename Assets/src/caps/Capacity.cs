@@ -39,6 +39,20 @@ public class Capacity : ICloneable
         return this.name;
     }
 
+    public int getScoreCapacity(Pokemon from, Pokemon to, float charge){
+        int a = 0,d = 0;
+        if(this is SpecialAttack){
+            a = from.getStats().SpeAttack;
+            d = to.getStats().SpeDefense;
+        }else{
+            a = from.getStats().Attack;
+            d = to.getStats().Defense;
+        }
+        int degat = makeDegat(from.getLevel(), this.power, a,d, 
+            calculateCM(to),charge);
+        return degat;
+    }
+
     public int getPP()
     {
         return pp;
@@ -72,15 +86,16 @@ public class Capacity : ICloneable
     public float calculateCM(Pokemon target)
     {
         float result = target.resistance.getEfficient(this);
-        if (result > 1.0f)
-            Debug.Log("C'est super efficace !");
+        if (result > 1.0f){
+            //Debug.Log("C'est super efficace !");
+        }
         else if(result == 0.0f)
         {
-            Debug.Log("Ca n'a aucun effet...");
+            //Debug.Log("Ca n'a aucun effet...");
         }
         else if(result < 1.0f)
         {
-            Debug.Log("Ce n'est très efficace...");
+            //Debug.Log("Ce n'est très efficace...");
         }
         return result;
     }
