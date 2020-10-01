@@ -87,7 +87,7 @@ public class GameSimul{
 
     public static object GetRandomAction(System.Array actions){
         System.Random rand = new System.Random();
-        int i = rand.Next(2);
+        int i = 0;
         if(i >= 1){
             return PossibleAction.WAIT;
         }else{

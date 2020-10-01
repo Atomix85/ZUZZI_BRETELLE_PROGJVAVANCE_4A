@@ -14,7 +14,7 @@ public class init : MonoBehaviour {
 
         CapacitiesRef.initCapacities();
 
-        meTerrain.addPokemon(new Bulbasaur(20));
+        meTerrain.addPokemon(new Squirtle(20));
 
         /*if (KeepType.Instance.Type == "Grass")
         {

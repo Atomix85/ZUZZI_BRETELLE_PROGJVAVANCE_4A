@@ -45,7 +45,7 @@ public class Node
             node.parent.data.a += validate;
             node.parent.data.b++;
             node = node.parent;
-            if(i++ > 32) break;
+            //if(i++ > 10000) break;
 
         }
     }

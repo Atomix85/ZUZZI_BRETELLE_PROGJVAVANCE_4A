@@ -15,13 +15,29 @@ public class MCTS : Agent
         a = new int[4];
     }
 
+    public bool thrust(){
+        foreach(Node n in tree.getPossibleAction()){
+            if(n.data.b > 20){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public override int interact(Pokemon pokemonMe, Pokemon pokemonAdv){
+
+
         if(pokemonAdv != null && pokemonMe != null){
+            
+            GameSimul.lifeAdv = pokemonAdv.getStats().Pv;
+            GameSimul.lifeMe = pokemonMe.getStats().Pv;
+            GameSimul.chargeAdv = pokemonAdv.charged;
+            GameSimul.chargeMe = pokemonMe.charged;
             compute(tree,pokemonMe, pokemonAdv);
         }
 
         int k = 0;
-        if(internalHorloge > born)
+        if(internalHorloge > born && thrust())
         {
             born = 0.5f;
             internalHorloge = 0;
@@ -29,15 +45,28 @@ public class MCTS : Agent
             float max = float.MinValue;
             PossibleAction currentAction = PossibleAction.UNDETERMINED;
             Node n = null;
-            foreach(Node child in tree.getPossibleAction()){
-                if(child.state != PossibleAction.UNDETERMINED){
-                    if((float)child.data.a / (float)child.data.b > max ){
-                        currentAction = child.state;
-                        max = (float)child.data.a / (float)child.data.b;
-                        n = child;
-                    }
+            bool priorityMove = false;
+            foreach(GameObject o in GameObject.FindGameObjectsWithTag("target")){
+                if(Vector2.Distance(o.transform.position, render.transform.position) < 2f){
+                    priorityMove = true;;
                 }
             }
+
+            foreach(Node child in tree.getPossibleAction()){
+                if(child.state != PossibleAction.UNDETERMINED){
+                    if(!priorityMove || (child.state == PossibleAction.DOWN || 
+                        child.state == PossibleAction.UP ||
+                        child.state == PossibleAction.RIGHT ||
+                        child.state == PossibleAction.LEFT))
+                        if((float)child.data.a / (float)child.data.b > max ){
+                            currentAction = child.state;
+                            max = (float)child.data.a / (float)child.data.b;
+                            n = child;
+                        }
+                }
+            }
+
+            a = new int[4];
 
             int i = 0;
             if(pokemonMe != null
@@ -119,7 +148,8 @@ public class MCTS : Agent
                 action = exitanteNode;
             }
             GameSimul.PlayAction(action,pokemonMe,pokemonAdv);
-            if(i++ > 10000) break;
+            //Debug.Log(GameSimul.lifeAdv + " | " + GameSimul.lifeMe);
+            //if(i++ > 10000) break;
         }
         action.data.b = 1;
         if(GameSimul.finalSituation == 0)//gameover
