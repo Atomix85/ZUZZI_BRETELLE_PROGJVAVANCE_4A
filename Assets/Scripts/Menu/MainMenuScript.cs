@@ -26,7 +26,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayParty()
     {
-        SavePosition.Instance.pos = new Vector3(-2.2f,6f, -27f);
+        SavePosition.Instance.pos = new Vector3(-19f,2.2f, -27f);
         Time.timeScale = 1.0f;
     } 
     
