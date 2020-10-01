@@ -18,7 +18,6 @@ public class EnablePauseMenu : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            Debug.Log("Escape pressed");
             menucam.SetActive(true);
             playercam.SetActive(false);
             PanelPause.SetActive(true);
