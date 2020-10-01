@@ -85,7 +85,7 @@ public class Pokemon {
         return backSprite;
     }
 
-    public int simulCapacity(int i, Pokemon target, ref float charge){
+    public int simulCapacity(int i, Pokemon target, ref float charge, ref int[] pp){
         if (i == -1)
             i = getRandomAttack();
 
@@ -94,6 +94,7 @@ public class Pokemon {
             if (canUseAttack(i)){
                 float chargeApplied = charge/100f;
                 charge = 0;
+                pp[i]--;
                 return capacities[i].getScoreCapacity(this, target, chargeApplied);
             }
         }

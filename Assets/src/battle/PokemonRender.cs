@@ -34,7 +34,7 @@ public class PokemonRender : MonoBehaviour
         GameObject targetInstance = Instantiate(target,dangerzone, Quaternion.identity);
         
         yield return new WaitForSeconds(1.0f);
-        Debug.Log(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position));
+        //Debug.Log(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position));
         if(Vector2.Distance(adversaire.transform.position, targetInstance.transform.position) < 2f){
             p.setPv(p.getPv() - degat);
             yield return PokemonBattleRender.recoveryTime(adversaire.transform.parent.gameObject);

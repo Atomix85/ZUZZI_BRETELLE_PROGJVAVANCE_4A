@@ -5,7 +5,7 @@ using UnityEngine;
 public class MCTS : Agent
 {
     private Node tree;
-
+    public static float FREQUENCY = 0.4f; 
     private int[] a;
     private float born;
 
@@ -17,7 +17,7 @@ public class MCTS : Agent
 
     public bool thrust(){
         foreach(Node n in tree.getPossibleAction()){
-            if(n.data.b > 40){
+            if(n.data.b > 20){
                 return true;
             }
         }
@@ -34,6 +34,12 @@ public class MCTS : Agent
             GameSimul.lifeMe = pokemonMe.getStats().Pv;
             GameSimul.chargeAdv = pokemonAdv.charged;
             GameSimul.chargeMe = pokemonMe.charged;
+            for(int i = 0 ; i < 4 ; i++){
+                if(pokemonMe.capacities[i] != null)
+                    GameSimul.ppMe[i] = pokemonMe.capacities[i].getPP();
+                if(pokemonAdv.capacities[i] != null)
+                    GameSimul.ppAdv[i] = pokemonAdv.capacities[i].getPP();
+            }
 
             compute(tree,pokemonMe, pokemonAdv);
         }
@@ -41,7 +47,7 @@ public class MCTS : Agent
         int k = 0;
         if(internalHorloge > born && thrust())
         {
-            born = 0.5f;
+            born = FREQUENCY;
             internalHorloge = 0;
 
             float max = float.MinValue;
@@ -56,19 +62,28 @@ public class MCTS : Agent
 
             foreach(Node child in tree.getPossibleAction()){
                 if(child.state != PossibleAction.UNDETERMINED){
-                    if(!priorityMove || (child.state == PossibleAction.DOWN || 
-                        child.state == PossibleAction.UP ||
-                        child.state == PossibleAction.RIGHT ||
-                        child.state == PossibleAction.LEFT))
-                        if((float)child.data.a / (float)child.data.b > max ){
-                            currentAction = child.state;
-                            max = (float)child.data.a / (float)child.data.b;
-                            n = child;
-                        }
+                    if((float)child.data.a / (float)child.data.b > max ){
+                        currentAction = child.state;
+                        max = (float)child.data.a / (float)child.data.b;
+                        n = child;
+                    }
                 }
             }
 
+
             a = new int[4];
+            if(priorityMove || currentAction == PossibleAction.ESQUIVE){
+                if(render.v.x >= 0)
+                    a[2] = 1;
+                else
+                    a[3] = 1;
+                
+                if(render.v.y >= 0)
+                    a[1] = 1;
+                else
+                    a[0] = 1;
+            }
+
 
             int i = 0;
             if(pokemonMe != null
@@ -90,18 +105,6 @@ public class MCTS : Agent
                         break;
                     case PossibleAction.CAPACITY3:
                         i = pokemonMe.useCapacity(3, pokemonAdv, render);
-                        break;
-                    case PossibleAction.UP:
-                        a[0] = 1;
-                        break;
-                    case PossibleAction.DOWN:
-                        a[1] = 1;
-                        break;
-                    case PossibleAction.LEFT:
-                        a[2] = 1;
-                        break;
-                    case PossibleAction.RIGHT:
-                        a[3] = 1;
                         break;
                 }
             }
@@ -133,7 +136,7 @@ public class MCTS : Agent
     
     void compute(Node action,Pokemon pokemonMe, Pokemon pokemonAdv){
         int i = 0;
-        Debug.Log(action.data.a + "/" + action.data.b);
+        //Debug.Log(action.data.a + "/" + action.data.b);
         while(!GameSimul.isFinished){
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 

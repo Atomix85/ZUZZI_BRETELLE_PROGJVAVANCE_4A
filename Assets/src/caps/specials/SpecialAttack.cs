@@ -21,7 +21,7 @@ public class SpecialAttack : Capacity {
         int speDefense = target.getStats().SpeDefense;
         int degat = makeDegat(emit.getLevel(), this.power, speAttack, speDefense, 
             calculateCM(target), calculateChargeLevel(emit));
-        Debug.Log(render);
+        //Debug.Log(render);
         if(render != null){
             IEnumerator coroutine = render.warn(target, degat);
             render.StartCoroutine(coroutine);

@@ -103,7 +103,7 @@ public class Capacity : ICloneable
 
     public virtual void use(Pokemon emit,Pokemon target)
     {
-        Debug.Log(emit.getName() + " utilise " + name);
+        //Debug.Log(emit.getName() + " utilise " + name);
         pp--;
     }
 }

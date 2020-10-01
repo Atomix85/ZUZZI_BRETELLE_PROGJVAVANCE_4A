@@ -11,6 +11,8 @@ public class GameSimul{
 
     public static int lifeAdv=100,lifeMe=100;
 
+    public static int[] ppMe = new int[4], ppAdv = new int[4]; 
+
     public static void Reset(){
         lifeAdv = 100;
         lifeMe = 100;
@@ -26,8 +28,8 @@ public class GameSimul{
     }
 
     public static void PlayAction(Node action, Pokemon pokemonMe, Pokemon pokemonAdv){
-        chargeMe += 0.5f * pokemonMe.getStats().Vitess;
-        chargeAdv += 0.5f * pokemonAdv.getStats().Vitess;
+        chargeMe += MCTS.FREQUENCY * pokemonMe.getStats().Vitess;
+        chargeAdv += MCTS.FREQUENCY * pokemonAdv.getStats().Vitess;
 
         if(chargeMe > 100) chargeMe = 0;
         if(chargeAdv > 100) chargeAdv = 0;
@@ -35,35 +37,23 @@ public class GameSimul{
         if(chargeMe < 0) chargeMe = 0;
         if(chargeAdv < 0) chargeAdv = 0;
 
-        int lifeToLose = pokemonAdv.simulCapacity(-1, pokemonMe, ref chargeAdv);
+        int lifeToLose = pokemonAdv.simulCapacity(-1, pokemonMe, ref chargeAdv, ref ppAdv);
         switch(action.state){
             case PossibleAction.CAPACITY0:
-                lifeAdv -= pokemonMe.simulCapacity(0,pokemonAdv, ref chargeMe);
+                lifeAdv -= pokemonMe.simulCapacity(0,pokemonAdv, ref chargeMe, ref ppMe);
                 break;
             case PossibleAction.CAPACITY1:
-                lifeAdv -= pokemonMe.simulCapacity(1,pokemonAdv, ref chargeMe);
+                lifeAdv -= pokemonMe.simulCapacity(1,pokemonAdv, ref chargeMe, ref ppMe);
                 break;
             case PossibleAction.CAPACITY2:
-                lifeAdv -= pokemonMe.simulCapacity(2,pokemonAdv, ref chargeMe);
+                lifeAdv -= pokemonMe.simulCapacity(2,pokemonAdv, ref chargeMe, ref ppMe);
                 break;
             case PossibleAction.CAPACITY3:
-                lifeAdv -= pokemonMe.simulCapacity(3,pokemonAdv, ref chargeMe);
+                lifeAdv -= pokemonMe.simulCapacity(3,pokemonAdv, ref chargeMe, ref ppMe);
                 break;
-            case PossibleAction.UP:
-                lifeToLose = 0;
-                chargeMe -= pokemonMe.getStats().Vitess * 0.5f;
-                break;
-            case PossibleAction.DOWN:
-                lifeToLose = 0;
-                chargeMe -= pokemonMe.getStats().Vitess * 0.5f;
-                break;
-            case PossibleAction.LEFT:
-                lifeToLose = 0;
-                chargeMe -= pokemonMe.getStats().Vitess * 0.5f;
-                break;
-            case PossibleAction.RIGHT:
-                lifeToLose = 0;
-                chargeMe -= pokemonMe.getStats().Vitess * 0.5f;
+            case PossibleAction.ESQUIVE:
+                lifeToLose = (int)(UnityEngine.Random.Range(0,3) * lifeToLose / 3f);
+                chargeMe -= pokemonMe.getStats().Vitess * MCTS.FREQUENCY;
                 break;
             case PossibleAction.WAIT:
                // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
@@ -115,10 +105,7 @@ public struct Register{
 public enum PossibleAction{
     UNDETERMINED,
     WAIT,
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
+    ESQUIVE,
     CAPACITY0,
     CAPACITY1,
     CAPACITY2,
