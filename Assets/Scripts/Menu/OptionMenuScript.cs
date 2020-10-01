@@ -29,4 +29,15 @@ public class OptionMenuScript : MonoBehaviour
     {
         KeepType.Instance.Type = "Water";
     }
+
+    public void DifficultyHard()
+    {
+        KeepType.Instance.Difficulty = "Hard";
+    }
+    
+    public void DifficultyEasy()
+    {
+        KeepType.Instance.Difficulty = "Easy";
+    }
+    
 }

@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         transform.position = SavePosition.Instance.pos;
-        Debug.Log(SavePosition.Instance.pos);
+        
     }
 
     void Update()
