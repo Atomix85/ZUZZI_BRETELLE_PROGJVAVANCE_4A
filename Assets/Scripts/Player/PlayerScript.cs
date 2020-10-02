@@ -12,9 +12,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float speed = 12f;
 
-    void Awake()
+    
+    void Start()
     {
-        transform.position = SavePosition.Instance.pos;
+        
+        //Debug.Log(transform.position);
+        //transform.position = new Vector3(KeepType.Instance.pos.x, KeepType.Instance.pos.y, KeepType.Instance.pos.z);
+        //Debug.Log(transform.position);
     }
 
     void Update()
@@ -67,7 +71,7 @@ public class PlayerScript : MonoBehaviour
 
     public void Savepos()
     {
-        SavePosition.Instance.pos = transform.position;
+        KeepType.Instance.pos = transform.position;
     }
 
     public void TypeEnemy(string Type)
