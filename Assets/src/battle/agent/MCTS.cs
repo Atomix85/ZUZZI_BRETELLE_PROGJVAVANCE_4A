@@ -17,11 +17,11 @@ public class MCTS : Agent
 
     public bool thrust(){
         foreach(Node n in tree.getPossibleAction()){
-            if(n.data.b > 20){
-                return true;
+            if(n.data.b < 20){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public override int interact(Pokemon pokemonMe, Pokemon pokemonAdv){
