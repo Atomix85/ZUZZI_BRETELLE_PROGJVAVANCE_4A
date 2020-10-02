@@ -13,9 +13,13 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private GameObject player;
     void Start()
     {
+        playerpos.transform.position = KeepType.Instance.pos;
+        //Instantiate(player, KeepType.Instance.pos, Quaternion.identity);
+        
         Time.timeScale = 0f;
         if (KeepType.Instance.isMenu == 0)
         {
+            
             player.SetActive(true);
             menucam.SetActive(false);
             playercam.SetActive(true);
@@ -27,7 +31,7 @@ public class MainMenuScript : MonoBehaviour
     public void PlayParty()
     {
         playerpos.transform.position = new Vector3(-19f,2.2f, -27f);
-        SavePosition.Instance.pos = new Vector3(-19f,2.2f, -27f);
+        KeepType.Instance.pos = new Vector3(-19f,2.2f, -27f);
         Time.timeScale = 1.0f;
     } 
     
