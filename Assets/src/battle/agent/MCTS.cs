@@ -5,8 +5,8 @@ using UnityEngine;
 public class MCTS : Agent
 {
     private Node tree;
-    public static float FREQUENCY = 0.4f; 
-    private int[] a;
+    public static float FREQUENCY = 0.4f;  // Fréquence des actions du MCTS
+    private int[] a; // matrice des touches directionnelles
     private float born;
 
     public MCTS(PokemonRender render) : base(render){
@@ -17,11 +17,11 @@ public class MCTS : Agent
 
     public bool thrust(){
         foreach(Node n in tree.getPossibleAction()){
-            if(n.data.b < 20){
-                return false;
+            if(n.data.b > 20){ // au moins un des noeuds doit être fiable (>20)
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public override int interact(Pokemon pokemonMe, Pokemon pokemonAdv){
@@ -29,11 +29,12 @@ public class MCTS : Agent
 
         if(pokemonAdv != null && pokemonMe != null){
             
-            
+            // initialise les données du simulateur
             GameSimul.lifeAdv = pokemonAdv.getStats().Pv;
             GameSimul.lifeMe = pokemonMe.getStats().Pv;
             GameSimul.chargeAdv = pokemonAdv.charged;
             GameSimul.chargeMe = pokemonMe.charged;
+            
             for(int i = 0 ; i < 4 ; i++){
                 if(pokemonMe.capacities[i] != null)
                     GameSimul.ppMe[i] = pokemonMe.capacities[i].getPP();
@@ -44,7 +45,7 @@ public class MCTS : Agent
             compute(tree,pokemonMe, pokemonAdv);
         }
 
-        int k = 0;
+        // Appel horloge
         if(internalHorloge > born && thrust())
         {
             born = FREQUENCY;
@@ -54,12 +55,14 @@ public class MCTS : Agent
             PossibleAction currentAction = PossibleAction.UNDETERMINED;
             Node n = null;
             bool priorityMove = false;
+            // Si une cible existe sur l'objet, on gère une priorité
             foreach(GameObject o in GameObject.FindGameObjectsWithTag("target")){
                 if(Vector2.Distance(o.transform.position, render.transform.position) < 2f){
                     priorityMove = true;;
                 }
             }
 
+            // Cherche la meilleure action conduisant à une victoire
             foreach(Node child in tree.getPossibleAction()){
                 if(child.state != PossibleAction.UNDETERMINED){
                     if((float)child.data.a / (float)child.data.b > max ){
@@ -70,7 +73,8 @@ public class MCTS : Agent
                 }
             }
 
-
+            // Si priorité de mouvement ou action ESQUIVE
+            // On se déplace
             a = new int[4];
             if(priorityMove || currentAction == PossibleAction.ESQUIVE){
                 if(render.v.x >= 0)
@@ -94,6 +98,7 @@ public class MCTS : Agent
                     case PossibleAction.WAIT:
                         break;
 
+                    // Utilise les capacités si le MCTS le demande
                     case PossibleAction.CAPACITY0:
                         i = pokemonMe.useCapacity(0, pokemonAdv, render);
                         break;
@@ -108,11 +113,13 @@ public class MCTS : Agent
                         break;
                 }
             }
+            // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
             if(n != null)
                 tree = n;
 
             return i;
         }
+        // Applique le mouvement
         if(pokemonMe != null){
             if(a[0] >= 0.8f){
                 render.v.y += Time.deltaTime * SENSIBILITY;
@@ -135,13 +142,16 @@ public class MCTS : Agent
     }
     
     void compute(Node action,Pokemon pokemonMe, Pokemon pokemonAdv){
-        int i = 0;
         //Debug.Log(action.data.a + "/" + action.data.b);
+        //Tant que la simulation n'est pas achevée
         while(!GameSimul.isFinished){
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
+            // Choisi une action au piff
             PossibleAction choice = (PossibleAction)GameSimul.GetRandomAction(actions);
             
+            // Crée un node (donc une action) si elle n'existe pas encore
+            // ou sinon prend celle trouvée
             Node exitanteNode = action.Exist(choice);
             if(exitanteNode == null){
                 Node selectedAction = action.AddChild(new Register(0,0));
@@ -152,17 +162,21 @@ public class MCTS : Agent
             }else{
                 action = exitanteNode;
             }
+            // Lance la simulation 
             GameSimul.PlayAction(action,pokemonMe,pokemonAdv);
             //Debug.Log(GameSimul.lifeAdv + " | " + GameSimul.lifeMe);
             //if(i++ > 10000) break;
         }
+        // Applique des valeurs sur la feuille finale
         action.data.b = 1;
         if(GameSimul.finalSituation == 0)//gameover
             action.data.a = 0;
         else                    //win
             action.data.a = 1;
 
+        // Retroprograpagation de l'action
         Node.Retropropagation(action);
+        // Prépare le simulateur à une prochaine simulation
         GameSimul.Reset();
     }
 }
