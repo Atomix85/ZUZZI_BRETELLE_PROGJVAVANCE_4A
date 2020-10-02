@@ -22,12 +22,9 @@ public class GameSimul{
         chargeMe = 0;
     }
 
-    static bool EndGameSimul(Node action){
-        return action.data.lifeAdversaire <= 0 || 
-            action.data.lifePlayer <= 0;
-    }
-
     public static void PlayAction(Node action, Pokemon pokemonMe, Pokemon pokemonAdv){
+        
+        // Gestion du niveau chargement des pokémons
         chargeMe += MCTS.FREQUENCY * pokemonMe.getStats().Vitess;
         chargeAdv += MCTS.FREQUENCY * pokemonAdv.getStats().Vitess;
 
@@ -37,7 +34,10 @@ public class GameSimul{
         if(chargeMe < 0) chargeMe = 0;
         if(chargeAdv < 0) chargeAdv = 0;
 
+        // Gestion de la vie
+        // Notre pokémon prend une capacité aléatoire de l'ennemi
         int lifeToLose = pokemonAdv.simulCapacity(-1, pokemonMe, ref chargeAdv, ref ppAdv);
+        // Il va aussi simuler l'action choisi et voir les changements qu'ils impliquent
         switch(action.state){
             case PossibleAction.CAPACITY0:
                 lifeAdv -= pokemonMe.simulCapacity(0,pokemonAdv, ref chargeMe, ref ppMe);
@@ -59,6 +59,7 @@ public class GameSimul{
                // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
                 break;
         }
+        //Condition de fin de partie
         lifeMe-=lifeToLose;
         if(lifeMe <= 0){
             finalSituation = 0;
@@ -92,14 +93,10 @@ public struct Register{
     public int b;
 
     //Life
-    public int lifePlayer;
-    public int lifeAdversaire;
 
     public Register(int a,int b){
         this.a = a;
         this.b = b;
-        this.lifePlayer = 100;
-        this.lifeAdversaire = 100;
     }
 }
 public enum PossibleAction{
